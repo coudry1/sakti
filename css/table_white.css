@@ -1,0 +1,7 @@
+﻿body {background:#1f1f1f; font:normal normal 16px Arial,Sans-Serif;font-weight:bold; margin:0;}
+table[border="1"] {border-collapse:collapse;font:normal normal 16px Arial,Sans-Serif;}
+table[border="1"] caption {font-weight:bold; font-size:16px;background-color:#ffffff;}
+table[border="1"] tr {background-color:#ffffff;}
+table[border="1"] th, table[border="1"] td {vertical-align:top;padding:5px 10px;border:1px solid #3c3c3c;}
+table[border="1"] td:nth-child(even) {background-color:#ffffff;}
+table[border="1"] th {background-color:#ffffff;font-weight:bold;}

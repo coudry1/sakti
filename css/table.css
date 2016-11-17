@@ -1,0 +1,7 @@
+﻿body {background:#1f1f1f; font:normal normal 16px Arial,Sans-Serif;font-weight:bold; margin:0;}
+table[border="1"] {border-collapse:collapse;font:normal normal 16px Arial,Sans-Serif;color:#ccc;-webkit-box-shadow:0 1px 3px black;-moz-box-shadow:0 1px 3px black;box-shadow:0 1px 3px black;}
+table[border="1"] caption {font:normal normal 16px Arial,Sans-Serif;color:#fff;background-color:#333;}
+table[border="1"] tr {background-color:#222;}
+table[border="1"] th, table[border="1"] td {vertical-align:top;padding:5px 10px;border:1px solid #3c3c3c;}
+table[border="1"] td:nth-child(even) {background-color:#1c1c1c;}
+table[border="1"] th {background-color:#555;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#666',endColorstr='#555');background-image:-webkit-gradient(linear,left top,left bottom,from(#666),to(#555));background-image:-webkit-linear-gradient(top,#666,#555);background-image:-moz-linear-gradient(top,#666,#555);background-image:-ms-linear-gradient(top,#666,#555);background-image:-o-linear-gradient(top,#666,#555);background-image:linear-gradient(top,#666,#555);color:black;font-size:16px;text-shadow:0 1px 0 rgba(255,255,255,.4);font-weight:bold;}
