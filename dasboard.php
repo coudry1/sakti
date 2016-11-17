@@ -124,7 +124,7 @@ Shadowbox.init({
           </button>
 		  <table>
 		  <tr><td width="68">
-          &nbsp;&nbsp;<img src="images/logo_sakti.png" alt=""> </td> <td width='1200px'><a class="navbar-brand" href="index.html"> n'Dashboard Aplikasi SAKTI</a></td>
+          &nbsp;&nbsp;<img src="images/logo_sakti.png" alt=""> </td> <td width='1200px'><a class="navbar-brand" href="index.html"> nDashboard Aplikasi SAKTI</a></td>
           <td width='18%' style="font-family:Arial, Helvetica, sans-serif; font-size:17px; color: #ffffff;text-align:right;">          <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav" style="font-size:16px">
               <li class="active"><a href="?p=d"><i class="icon-home icon-white"></i> Home</a></li>                            
