@@ -282,8 +282,8 @@ if (isset($_GET['q'])) $nmsatker= $_GET['q'];
 
 $sql  = oci_parse($conn, "select * from (
 select b.nm_satker, to_char(a.tgluploadsakti,'dd-mm-yyyy hh:mi:ss') tgluploadsakti, a.email_user, a.namafilesakti from (
-select  satkeroffice_id, tgluploadsakti, createby email_user, namafilesakti from  POR_T_ADK where STATUSADK_ID='2' AND deleted IS NULL) a left join
-(select distinct id, nm_satker from POR_R_SATKEROFFICE) b on a.satkeroffice_id=b.id) where nm_satker='$nmsatker' order by tgluploadsakti desc" );
+select  satkeroffice_id, tgluploadsakti, createby email_user, namafilesakti from  span_portletlv.POR_T_ADK where STATUSADK_ID='2' AND deleted IS NULL) a left join
+(select distinct id, nm_satker from span_portletlv.POR_R_SATKEROFFICE) b on a.satkeroffice_id=b.id) where nm_satker='$nmsatker' order by tgluploadsakti desc" );
 
 oci_execute($sql);
 

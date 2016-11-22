@@ -3,9 +3,9 @@
 include "koneksi2.php";
 
 $sql  = oci_parse($conn, "select b.nm_satker, a.tgluploadsakti, a.email_user, a.namafilesakti from (
-select  satkeroffice_id, tgluploadsakti, createby email_user, namafilesakti from  POR_T_ADK where
+select  satkeroffice_id, tgluploadsakti, createby email_user, namafilesakti from  SPAN_PORTLETLV.POR_T_ADK where
 TO_CHAR(tgluploadsakti, 'YYYY-MON-DD') =  TO_CHAR (SYSTIMESTAMP, 'YYYY-MON-DD') AND deleted IS NULL) a left join
-(select distinct id, nm_satker from POR_R_SATKEROFFICE) b on a.satkeroffice_id=b.id" );
+(select distinct id, nm_satker from SPAN_PORTLETLV.POR_R_SATKEROFFICE) b on a.satkeroffice_id=b.id" );
 
 oci_execute($sql);
 

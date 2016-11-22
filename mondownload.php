@@ -3,9 +3,9 @@
 include "koneksi3.php";
 
 $sql  = oci_parse($conn, "select a.kppn_kd, b.nama_kppn, a.downloaded, a.nama_file_sakti, a.tanggal_upload from (
-select kppn_kd, downloaded, nama_file_sakti, tanggal_upload FROM POC_T_ADK 
+select kppn_kd, downloaded, nama_file_sakti, tanggal_upload FROM KONVERTERLV.POC_T_ADK 
 WHERE TO_CHAR(TANGGAL_UPLOAD, 'YYYY-MON-DD') =  TO_CHAR (SYSTIMESTAMP, 'YYYY-MON-DD')) a left join
-(select distinct kode_kppn, nama_kppn from POC_R_KPPN) b on a.kppn_kd=b.kode_kppn where downloaded is not null" );
+(select distinct kode_kppn, nama_kppn from KONVERTERLV.POC_R_KPPN) b on a.kppn_kd=b.kode_kppn where downloaded is not null" );
 
 oci_execute($sql);
 
