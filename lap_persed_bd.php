@@ -284,7 +284,7 @@ oci_define_by_name($satker,'NAMA_SATKER',$nama_satker);
 oci_execute($satker);
 oci_fetch($satker);
 
-$sql  = oci_parse($conn, "select * from (select id,kode_satker,tgl_kwitansi,no_kwitansi,kode_akun,keterangan
+$sql  = oci_parse($conn, "select * from (select id,kode_satker,tgl_kwitansi,no_kwitansi,kode_akun,jumlah,keterangan
 from sakti_app.ben_t_kwitansi_header
 where kode_satker='$kdsatker' and non_barang=1 and status_barang=0 and deleted=0) a
 inner join
@@ -299,11 +299,11 @@ oci_execute($sql);
 if ($kdsatker!='') {
 echo "
 <table height='50px' width='1278px' style='background:white;' align='center' border='0'>
-<tr border='0' height='30px'><td colspan='6'align='center'>&nbsp;</td></tr>
-<tr><td colspan='6'align='left'></td></tr>
-<tr><td colspan='6' align='center'><strong>BELUM PENDETILAN KWITANSI MODUL PERSEDIAAN</strong></td></tr>
-<tr border='0'><td colspan='6'align='center'><strong>". $nama_satker ."</strong></td></tr>
-<tr border='0' height='30px' align='left'><td colspan='6' align='left'>&nbsp;Tanggal : ".$today."</td></tr>
+<tr border='0' height='30px'><td colspan='7'align='center'>&nbsp;</td></tr>
+<tr><td colspan='7'align='left'></td></tr>
+<tr><td colspan='7' align='center'><strong>BELUM PENDETILAN KWITANSI MODUL PERSEDIAAN</strong></td></tr>
+<tr border='0'><td colspan='7'align='center'><strong>". $nama_satker ."</strong></td></tr>
+<tr border='0' height='30px' align='left'><td colspan='7' align='left'>&nbsp;Tanggal : ".$today."</td></tr>
 </table>
 <table height='50px' width='1280px' align='center' border='1'>
   <tr>
@@ -312,6 +312,7 @@ echo "
     <th align='center' ><strong>Tanggal Kuitansi</strong> </td>
     <th class='head0' >No Kuitansi </td>
     <th class='head1' >Kode Akun </td>
+    <th class='head1' >Rupiah </td>
     <th class='head1' >Keterangan </td>
   </tr>
 
@@ -320,13 +321,15 @@ $no = 1;
 while (($row1 = oci_fetch_array($sql, OCI_BOTH)) != false) {
     // Use the uppercase column names for the associative array indices
  $KET=substr($row1["KETERANGAN"], 0,60);
+  $jumlah=number_format($row1["JUMLAH"],0,",",".");
  echo     "
   <tr class='gradeX'>
   	 <td>$no.</td>
     <td width='20px' align='center'>". $row1["KODE_SATKER"] ."</td>
-    <td width='130px' align='center'>". $row1["TGL_KWITANSI"] . "</td>
+    <td width='180px' align='center'>". $row1["TGL_KWITANSI"] . "</td>
     <td width='200px'>". $row1["NO_KWITANSI"] . "</td>
     <td>". $row1["KODE_AKUN"] . "</td>
+    <td align='right'>". $jumlah . ",-</td>
     <td width='800px' >". $KET . "</td>
   </tr>
  ";
@@ -336,16 +339,17 @@ echo "</table>
 ";
 }
 else{
-$sql  = oci_parse($conn, "select kode_satker,tgl_kwitansi,no_kwitansi,kode_akun,keterangan from sakti_app.BEN_T_KWITANSI_HEADER 
-where substr(kode_akun,1,2)='52' and non_barang='1' and status_barang='0' and deleted='0'  and no_kwitansi not in(select no_bukti from sakti_app.PER_T_TRANS where asal_barang='KWITANSI') order by tgl_kwitansi desc");
+$sql  = oci_parse($conn, "select kode_satker,tgl_kwitansi,no_kwitansi,kode_akun,jumlah, keterangan from sakti_app.BEN_T_KWITANSI_HEADER 
+where substr(kode_akun,1,2)='52' and non_barang='1' and status_barang='0' and deleted='0' 
+and no_kwitansi not in(select no_bukti from sakti_app.PER_T_TRANS where asal_barang='KWITANSI') order by tgl_kwitansi desc");
 
 oci_execute($sql);
 echo "
 <table height='50px' width='1278px' style='background:white;' align='center' border='0'>
-<tr border='0' height='30px'><td colspan='6'align='center'>&nbsp;</td></tr>
-<tr><td colspan='6'align='left'></td></tr>
-<tr><td colspan='6' align='center'><strong>KONSOLIDASI BELUM PENDETILAN KWITANSI MODUL PERSEDIAAN</strong></td></tr>
-<tr border='0' height='30px' align='left'><td colspan='6' align='left'>&nbsp;Tanggal : ".$today."</td></tr>
+<tr border='0' height='30px'><td colspan='7'align='center'>&nbsp;</td></tr>
+<tr><td colspan='7'align='left'></td></tr>
+<tr><td colspan='7' align='center'><strong>KONSOLIDASI BELUM PENDETILAN KWITANSI MODUL PERSEDIAAN</strong></td></tr>
+<tr border='0' height='30px' align='left'><td colspan='7' align='left'>&nbsp;Tanggal : ".$today."</td></tr>
 </table>
 <table height='50px' width='1280px' align='center' border='1'>
   <tr>
@@ -354,6 +358,7 @@ echo "
     <th class='head1' >Tanggal Kuitansi </td>
     <th class='head0' >No Kuitansi </td>
     <th class='head1' >Kode Akun </td>
+    <th class='head1' >Rupiah </td>
     <th class='head1' >Keterangan </td>
   </tr>
 
@@ -362,6 +367,7 @@ $no = 1;
 while (($row1 = oci_fetch_array($sql, OCI_BOTH)) != false) {
     // Use the uppercase column names for the associative array indices
  $KET=substr($row1["KETERANGAN"], 0,50);
+ $jumlah=number_format($row1["JUMLAH"],0,",",".");
  echo     "
   <tr class='gradeX'>
     <td>$no.</td>  
@@ -369,6 +375,7 @@ while (($row1 = oci_fetch_array($sql, OCI_BOTH)) != false) {
     <td width='130px' align='center'>". $row1["TGL_KWITANSI"] . "</td>
     <td width='200px'>". $row1["NO_KWITANSI"] . "</td>
     <td>". $row1["KODE_AKUN"] . "</td>
+    <td align='right'>". $jumlah . ",-</td>
     <td >". $KET . "</td>
   </tr>
  ";
