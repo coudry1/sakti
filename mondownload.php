@@ -1,6 +1,6 @@
 
 <?php 
-include "koneksi2.php";
+include "koneksi2.php"; //koneksi ke db
 
 $sql  = oci_parse($conn, "select a.kppn_kd, b.nama_kppn, a.downloaded, a.nama_file_sakti, a.tanggal_upload from (
 select kppn_kd, downloaded, nama_file_sakti, tanggal_upload FROM KONVERTERLV.POC_T_ADK 
